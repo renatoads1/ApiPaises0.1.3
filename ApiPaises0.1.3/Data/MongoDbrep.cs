@@ -1,10 +1,4 @@
-﻿using ApiPaises013.Domain.Entities;
-using Microsoft.Extensions.Configuration;
-using MongoDB.Bson.Serialization;
-using MongoDB.Driver;
-using System;
-
-namespace ApiPaises013.Data
+﻿namespace ApiPaises013.Data
 {
 
     public class MongoDbrep : IMongoDbrep

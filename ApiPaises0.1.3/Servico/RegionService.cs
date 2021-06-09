@@ -1,10 +1,8 @@
 ﻿using ApiPaises013.Data;
 using ApiPaises013.Domain.Entities;
 using MongoDB.Driver;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ApiPaises013.Servico
 {
@@ -22,6 +20,13 @@ namespace ApiPaises013.Servico
         }
         public List<Region> Get() =>
             _region.Find(_ => true).ToList();
+
+        public List<Region> GetByCountry(string country) {
+
+            //var retorno = _region.AsQueryable()
+
+            return _region.Find(_ => _.Country == country).ToList();
+        }
 
     }
 }

@@ -2,17 +2,10 @@ using ApiPaises013.Data;
 using ApiPaises013.Servico;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ApiPaises013
 {
@@ -36,6 +29,7 @@ namespace ApiPaises013
 
             services.AddSingleton<PaisService>(); 
             services.AddSingleton<RegionService>();
+            services.AddSingleton<CityService>();
 
             services.AddControllers();
         }
