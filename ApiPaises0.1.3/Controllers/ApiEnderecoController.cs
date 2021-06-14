@@ -13,25 +13,25 @@ namespace ApiPaises013.Controllers
     [Route("[controller]")]
     public class ApiEnderecoController : ControllerBase
     {
-        private readonly PaisService _paisService;
+        private readonly PaisesService _paisesService;
         private readonly RegionService _regionService;
         private readonly CityService _cityService;
         private readonly ILogger<ApiEnderecoController> _logger;
 
         public ApiEnderecoController(ILogger<ApiEnderecoController> logger,
-            PaisService pais,
+            PaisesService paises,
             RegionService region,
             CityService city)
         {
             _cityService = city;
             _regionService = region;
-            _paisService = pais;
+            _paisesService = paises;
             _logger = logger;
         }
 
         [HttpGet("pais")]
-        public ActionResult<List<Pais>> Getpais() { 
-            return  _paisService.Get();
+        public ActionResult<List<Paises>> Getpais() { 
+            return  _paisesService.Get();
         }
 
 

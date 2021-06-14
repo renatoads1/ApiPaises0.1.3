@@ -21,8 +21,7 @@ namespace ApiPaises013.Servico
             _city.Find(_ => true).ToList();
 
         public List<City> GetByCountryRegion(string country,string region) {
-            return _city.Find(_ => _.Country == country && _.Region == region).ToList();
-        
+            return _city.Find(_ => _.Country == country && _.Region.Contains(region)).ToList();
         }
 
     }

@@ -11,6 +11,9 @@ namespace ApiPaises013
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,11 +30,22 @@ namespace ApiPaises013
             services.AddSingleton<IMongoDbrep>(sp =>
                 sp.GetRequiredService<IOptions<MongoDbrep>>().Value);
 
-            services.AddSingleton<PaisService>(); 
+            services.AddSingleton<PaisesService>(); 
             services.AddSingleton<RegionService>();
             services.AddSingleton<CityService>();
 
             services.AddControllers();
+            services.AddCors();
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy(name: MyAllowSpecificOrigins,
+            //        builder =>
+            //        {
+            //            builder.WithOrigins("https://localhost:44396/ApiEndereco/pais",
+            //                                "http://localhost:8100");
+            //        });
+            //});
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +55,14 @@ namespace ApiPaises013
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //app.UseCors(MyAllowSpecificOrigins);
+            // global cors policy
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true) // allow any origin
+                .AllowCredentials()); // allow credentials
 
             app.UseHttpsRedirection();
 

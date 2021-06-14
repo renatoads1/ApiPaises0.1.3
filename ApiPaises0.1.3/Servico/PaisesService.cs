@@ -6,20 +6,19 @@ using System.Linq;
 
 namespace ApiPaises013.Servico
 {
-    public class PaisService
+    public class PaisesService
     {
-        private readonly IMongoCollection<Pais> _pais;
+        private readonly IMongoCollection<Paises> _paises;
 
 
-        public PaisService(IMongoDbrep settings)
+        public PaisesService(IMongoDbrep settings)
         {
-
             var client = new MongoClient("mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false");
             var database = client.GetDatabase("apiendereco");
-            _pais = database.GetCollection<Pais>("pais");
+            _paises = database.GetCollection<Paises>("paises");
         }
 
-        public List<Pais> Get() =>
-            _pais.Find(_ => true).ToList();
+        public List<Paises> Get() =>
+            _paises.Find(_ => true).ToList();
     }
 }

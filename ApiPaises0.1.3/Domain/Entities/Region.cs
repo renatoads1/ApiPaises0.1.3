@@ -19,5 +19,9 @@ namespace ApiPaises013.Domain.Entities
             this.region = region;
             Country = country;
         }
+
+        public string GetAllData() {
+            return string.Concat(this.Id+this.region+this.Country);
+        }
     }
 }

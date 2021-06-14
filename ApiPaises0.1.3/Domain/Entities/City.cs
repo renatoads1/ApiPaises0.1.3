@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System;
 
 namespace ApiPaises013.Domain.Entities
 {
@@ -28,5 +29,10 @@ namespace ApiPaises013.Domain.Entities
             Latitude = latitude;
             Longitude = longitude;
         }
+
+        public string TestCity(string id, string city, string region, string country, string latitude, string longitude) {
+            return String.Concat(this.Id,this.city,this.Region,this.Country,this.Latitude,this.Longitude);
+        }
+
     }
 }
