@@ -13,7 +13,8 @@ namespace ApiPaises013.Servico
         public RegionService(IMongoDbrep settings)
         {
 
-            var client = new MongoClient("mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false");
+            //var client = new MongoClient("mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false");
+            var client = new MongoClient("mongodb+srv://renatoads1:r3n4t0321@cluster0.k1iwv.mongodb.net/apiendereco?retryWrites=true&w=majority");
             var database = client.GetDatabase("apiendereco");
             _region = database.GetCollection<Region>("region");
 

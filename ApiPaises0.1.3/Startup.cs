@@ -6,6 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+//para publicar no ubuntu
+using Microsoft.AspNetCore.HttpOverrides;
+using System.Net;
+
 
 namespace ApiPaises013
 {
@@ -24,6 +28,8 @@ namespace ApiPaises013
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+
             services.Configure<MongoDbrep>(
         Configuration.GetSection(nameof(MongoDbrep)));
 
@@ -35,6 +41,13 @@ namespace ApiPaises013
             services.AddSingleton<CityService>();
 
             services.AddControllers();
+            
+            //para publicar no ubuntu
+            services.Configure<ForwardedHeadersOptions>(options => {
+                options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+                options.KnownProxies.Add(IPAddress.Parse("0.0.0.0"));
+            });
+
             services.AddCors();
             //services.AddCors(options =>
             //{
@@ -53,6 +66,11 @@ namespace ApiPaises013
         {
             if (env.IsDevelopment())
             {
+                app.UseForwardedHeaders();
+                app.UseDeveloperExceptionPage();
+            }
+            else {
+                app.UseForwardedHeaders();
                 app.UseDeveloperExceptionPage();
             }
 

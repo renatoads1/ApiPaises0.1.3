@@ -29,11 +29,16 @@ namespace ApiPaises013.Controllers
             _logger = logger;
         }
 
+
         [HttpGet("pais")]
         public ActionResult<List<Paises>> Getpais() { 
             return  _paisesService.Get();
         }
-
+        [HttpGet("pais/{pais}")]
+        public ActionResult<Paises> GetpaisForVar(string pais)
+        {
+            return _paisesService.GetpaisForVar(pais);
+        }
 
         [HttpGet("region")]
         public ActionResult<List<Region>> Getregion()
