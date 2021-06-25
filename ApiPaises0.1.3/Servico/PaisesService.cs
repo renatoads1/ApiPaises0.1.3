@@ -20,16 +20,14 @@ namespace ApiPaises013.Servico
         }
 
         public List<Paises> Get() =>
-            //_paises.Find(_ => true).Limit(10).ToList();
             _paises.Find(_ => true).ToList();
-        //var list = await collection.Find(new BsonDocument())
-        //                .Limit(2) //retrive only two documents
-        //                .ToListAsync();
 
         public Paises GetpaisForVar(string pais) {
 
             return _paises.Find(_ => _.Name.Contains(pais)).FirstOrDefault();
         }
 
+        public List<Paises> GetDez() =>
+            _paises.Find(_ => true).Limit(10).ToList();
     }
 }

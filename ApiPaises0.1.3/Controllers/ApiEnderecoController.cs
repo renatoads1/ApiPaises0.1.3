@@ -34,6 +34,13 @@ namespace ApiPaises013.Controllers
         public ActionResult<List<Paises>> Getpais() { 
             return  _paisesService.Get();
         }
+
+        [HttpGet("pais/dez")]
+        public ActionResult<List<Paises>> Getpaisdez()
+        {
+            return _paisesService.GetDez();
+        }
+
         [HttpGet("pais/{pais}")]
         public ActionResult<Paises> GetpaisForVar(string pais)
         {
@@ -51,6 +58,7 @@ namespace ApiPaises013.Controllers
         {
             return _regionService.GetByCountry(codPais);
         }
+
 
         [HttpGet("city")]
         public ActionResult<List<City>> Get()
