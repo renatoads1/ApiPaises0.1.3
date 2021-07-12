@@ -1,0 +1,16 @@
+﻿version: "3"
+
+services:
+  detector.api:
+    image: paisesapis
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: paisesapis
+    ports:
+      - "80:80"
+    restart: always
+
+networks:
+  spectrum:
+    external: true
