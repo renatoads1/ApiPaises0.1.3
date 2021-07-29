@@ -1,0 +1,27 @@
+digraph {  
+  idle [label="Idle"]
+  start_detection [label="Start detection"]
+  dark_detection [label="Dark detection"]
+  turn_xray_on [label="Turn x-ray on"]
+  air_detection [label="Air detection"]
+  stop_processes [label="Stop processes"]
+  save_calibration_data [label="Save calibration data"]
+  send_calibration_data [label="Send calibration data"]
+
+  idle -> idle [label="Wait for calibration start command"]
+  idle -> start_detection [label="Sends detector start command"]
+  start_detection -> start_detection [label="Wait for detector response"]
+  start_detection -> dark_detection [label="Starts dark detection"]
+  dark_detection -> dark_detection [label="Wait for N data packages"]
+  dark_detection -> turn_xray_on [label="Sends x-ray start command"]
+  turn_xray_on -> turn_xray_on [label="Wait for x-ray response"]
+  turn_xray_on -> air_detection [label="Starts air detection"]
+  air_detection -> air_detection [label="Wait for N data packages"]
+  air_detection -> stop_processes [label="Sends stop commands"]
+  stop_processes -> stop_processes [label="Wait for detector and xray responses"]
+  stop_processes -> save_calibration_data [label="Save data to file"]
+  save_calibration_data -> save_calibration_data [label="Wait for process finish"]
+  save_calibration_data -> send_calibration_data [label="Send calibration data to pipeline"]
+  send_calibration_data -> send_calibration_data [label="Wait for pipeline response"]
+  send_calibration_data -> idle
+}
